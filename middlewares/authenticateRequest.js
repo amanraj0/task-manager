@@ -12,7 +12,6 @@ export const authenticateToken = async function(req,res,next){
 
     try{
         const decode = await jwtToken.validateToken(token);
-        console.log("decoded", decode);
         req.user = decode;
         next();
     }catch(error){

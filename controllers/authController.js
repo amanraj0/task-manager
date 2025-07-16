@@ -1,18 +1,12 @@
 import authService from "../service/authService.js";
 import {successResponse, errorResponse} from "../utils/response.js";
+import {userResponseTransformer} from "../utils/userResponseTransformer.js";
 
 const createUser = async (req, res) => {
     try {
         const userInfo = req.body;
         const user = await authService.createUser(userInfo);
-        const newUser = {
-            id: user._id,
-            firstName: user.firstName,
-            email: user.email,
-            createdAt: user.createdAt,
-            updatedAt: user.updatedAt
-        };
-
+        const newUser = userResponseTransformer(user);
         return successResponse(res,'User registered successfully',newUser,201);
 
     } catch (error) {

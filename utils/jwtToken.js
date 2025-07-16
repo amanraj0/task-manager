@@ -6,7 +6,8 @@ const EXPIRES_IN = process.env.JWT_TOKEN_EXPIRY_IN_SEC;
 const createToken = async function(user){
     const payload = {
         _id: user._id,
-        email: user.email
+        email: user.email,
+        role: user.role,
     };
 
     

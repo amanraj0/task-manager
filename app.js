@@ -3,6 +3,8 @@ import 'dotenv/config';
 
 import taskRoute from "./routes/task.js";
 import authRoute from "./routes/auth.js";
+import userRoute from "./routes/user.js";
+
 import connect from "./utils/mongodb.js";
 
 
@@ -11,8 +13,10 @@ const PORT = process.env.PORT;
 const MONGO_DB_URL = process.env.MONGO_DB_URL
 
 app.use(express.json());
+
 app.use("/api/v1/tasks",taskRoute);
 app.use("/api/v1/auth",authRoute);
+app.use("/api/v1/users",userRoute);
 
 connect(MONGO_DB_URL)
     .then(()=>{

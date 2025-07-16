@@ -4,6 +4,8 @@ import validateNewTaskReq, {allowedTaskFields} from "../middlewares/validateNewT
 import rejectUnknownFields from "../middlewares/rejectUnknownFields.js";
 import taskController from "../controllers/taskController.js";
 import {authenticateToken} from "../middlewares/authenticateRequest.js";
+import roles from "../config/roles.js";
+import { authorizeRole } from "../middlewares/authorizeRole.js";
 
 
 const router = Router();
@@ -17,7 +19,7 @@ router
 router
     .route("/:taskId")
     .get(authenticateToken,taskController.getTaskById)
-    .delete(authenticateToken,taskController.deleteTaskById);
+    .delete(authenticateToken,authorizeRole(roles.ROLES.ADMIN,roles.ROLES.MANAGER),taskController.deleteTaskById);
 
 
 export default router;

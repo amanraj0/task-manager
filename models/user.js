@@ -25,13 +25,18 @@ const userSchema = Schema({
     password:{
         type: String,
         required: true,
+    },
+    role:{
+        type: String,
+        required: false,
+        default: "user",
     }
 },{timestamps: true});
 
 userSchema.pre("save", function(next){
     const user = this;
 
-    if(!user.isModified("password")) return;
+    if(!user.isModified("password")) return next();
 
     const salt = generateRandomBytes(16);
     
