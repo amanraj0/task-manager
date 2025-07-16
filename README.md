@@ -65,15 +65,21 @@ The server will run on http://localhost:5000
    This enhances security by ensuring passwords are not stored in plain text and each user has a unique salt.
 
 ## API Endpoints
+### Auth Service
    POST /auth/register - Register a new user
 
    POST /auth/login - User login, returns JWT token
+
+### Task Service
 
    GET /tasks - Get tasks (users get their own, admins get all)
 
    POST /tasks - Create a new task
 
    DELETE /tasks/:id - Delete a task (admin only)
+
+### User Service
+   PUT /users/:userId/role - Assign role to a user(admin and manager only)
 
 ## Role-Based Access Control (RBAC)
   
